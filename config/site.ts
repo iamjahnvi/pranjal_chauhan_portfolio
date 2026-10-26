@@ -74,44 +74,7 @@ export const site = {
       url: "",
     },
   ] as Job[],
-  projects: [
-    {
-      title: "Thoda Sukoon",
-      blurb:
-        "A mental wellness platform offering guided meditation, breathing exercises, and mood tracking to help users find calm and balance in their daily lives.",
-      stack: ["React", "Vite", "CSS", "Framer Motion"],
-      year: "2024",
-      links: {
-        live: "https://thoda-sukoon.netlify.app/",
-        source: "https://github.com/iampranjal-source/thoda-sukoon",
-      },
-      featured: true,
-    },
-    {
-      title: "Coffee Cafe",
-      blurb:
-        "A coffee shop website showcasing menu items, location information, and an engaging brand experience for a local cafe, built with responsive design and smooth interactions.",
-      stack: ["HTML", "CSS", "JavaScript"],
-      year: "2024",
-      links: {
-        live: "https://cofee-cafe-9.netlify.app/",
-        source: "https://github.com/iampranjal-source/coffee-cafe",
-      },
-      featured: true,
-    },
-    {
-      title: "Ashok Sweets & Namkeens",
-      blurb:
-        "A traditional sweets and namkeens shop website displaying products, categories, and store information with a warm, inviting design.",
-      stack: ["HTML", "CSS", "JavaScript"],
-      year: "2024",
-      links: {
-        live: "https://ashok-sweets-namkeens.netlify.app/",
-        source: "https://github.com/iampranjal-source/ashok-sweets",
-      },
-      featured: true,
-    },
-  ] as Project[],
+  projects: [] as Project[],
   skills: [
     "Python",
     "CSS",
