@@ -1,27 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { site } from "@/config/site";
-import {
-  GitHubIcon,
-  TwitterIcon,
-  LinkedInIcon,
-  MailIcon,
-  FileIcon,
-  DiscordIcon,
-  MediumIcon
-} from "./icons";
-
-// Monochrome identity: pills rest muted and lift to foreground white
-// on hover. No brand colors — here or in the hover cards below.
+import { GitHubIcon, TwitterIcon, LinkedInIcon } from "./icons";
 
 const items = [
   { key: "github", href: site.socials.github, label: "GitHub", Icon: GitHubIcon },
-  { key: "twitter", href: site.socials.twitter, label: "Twitter", Icon: TwitterIcon },
+  { key: "twitter", href: site.socials.twitter, label: "X", Icon: TwitterIcon },
   { key: "linkedin", href: site.socials.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
-  { key: "medium", href: (site.socials as any).medium, label: "Medium", Icon: MediumIcon },
-  { key: "email", href: site.socials.email, label: "Mail", Icon: MailIcon },
-  { key: "resume", href: site.socials.resume, label: "Resume", Icon: FileIcon },
-  { key: "discord", href: (site.socials as any).discord, label: "Discord", Icon: DiscordIcon },
 ];
 
 const hoverCardsData: Record<string, {
@@ -32,47 +17,21 @@ const hoverCardsData: Record<string, {
   bannerText: string;
 }> = {
   github: {
-    handle: "@iamjahnvi",
-    bio: "Full Stack Developer. Building products, learning technologies, shipping consistently. Obsessed with clean code.",
-    stats: ["5+ Projects", "500+ Contributions"],
+    handle: "@iampranjal-source",
+    bio: "Full Stack Developer. Building products, learning technologies, shipping consistently.",
+    stats: ["5+ Projects", "Open Source"],
     bannerText: "learn • build • ship",
   },
   twitter: {
-    handle: "@fireflybuilds",
-    bio: "Building clean, modern web apps where design, functionality, and even the smallest details matter.",
-    stats: ["Tech Thoughts", "Dev Twitter"],
+    handle: "@iampranjal304",
+    bio: "Building and exploring AI/ML, full-stack development, and developer tools.",
     bannerText: "connect • share • grow",
   },
   linkedin: {
     pronouns: "He/Him",
-    handle: "in/jahnvi-11a189358",
-    bio: "Frontend & Backend Developer. Experienced in React, Next.js, Node.js, and database systems.",
-    stats: ["Open to Work", "Delhi, India"],
+    handle: "in/pranjal-chauhan-57436a2b2",
+    bio: "1st-year B.Tech CSE student exploring AI/ML and full-stack development.",
     bannerText: "network • build • impact",
-  },
-  medium: {
-    handle: "@jahnvidotdev",
-    bio: "Writing technical articles about software development, system design, React, and backend architecture.",
-    stats: ["Tech Articles", "Blog Posts"],
-    bannerText: "write • share • read",
-  },
-  email: {
-    handle: "conveytojahnvi@gmail.com",
-    bio: "Available for contract work, internship opportunities, and collaborative software engineering projects.",
-    stats: ["Fast Response", "Direct Email"],
-    bannerText: "collab • contact • direct",
-  },
-  resume: {
-    handle: "Curriculum Vitae",
-    bio: "View academic records, developer skills, and internship details.",
-    stats: ["PDF Resume", "1-Page CV"],
-    bannerText: "skills • experience • cv",
-  },
-  discord: {
-    handle: "jahnvi.dev",
-    bio: "Join my server or drop a DM to chat about web dev, coding challenges, or side projects.",
-    stats: ["Developer Chat", "Active DM"],
-    bannerText: "hangout • chat • code",
   },
 };
 

@@ -1,66 +1,13 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Shell, SectionHeader } from "@/components/Layout";
 import { site, type Project } from "@/config/site";
 import { ProjectCard } from "./ProjectCard";
-
-// Display title → data title (they differ only for AI Recovery Agent).
-const SERIOUS_ORDER = [
-  { title: "NextStep", match: "NextStep" },
-  { title: "ECDAT", match: "ECDAT" },
-  { title: "AI Recovery Agent", match: "AI Revenue Recovery Agent" },
-];
-
-const FUN_ORDER = [
-  { title: "Tiny Universe", match: "Tiny Universe" },
-  { title: "Virtual Carvaan", match: "Virtual Carvaan" },
-];
-
-function resolveEntry({ title, match }: { title: string; match: string }): Project {
-  const existing = site.projects.find((project) => project.title === match);
-  if (!existing) return { title, blurb: "", stack: [], year: "", links: {} };
-  return { ...existing, title };
-}
-
-function matchesQuery(p: Project, query: string) {
-  if (!query) return true;
-  const q = query.toLowerCase();
-  return `${p.title} ${p.blurb} ${p.stack.join(" ")}`.toLowerCase().includes(q);
-}
-
-// Sub-heading that gently zooms while it travels through the middle
-// of the viewport, then settles back to normal once scrolled past.
-function SubHeading({ children, className = "" }: { children: ReactNode; className?: string }) {
-  const ref = useRef<HTMLHeadingElement>(null);
-  const [zoom, setZoom] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([entry]) => setZoom(entry.isIntersecting), {
-      rootMargin: "-35% 0px -55% 0px",
-      threshold: 0,
-    });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  return (
-    <h3
-      ref={ref}
-      className={`mb-2 origin-left font-mono text-sm uppercase tracking-[0.12em] text-[var(--soft)] transition-transform duration-500 ease-out will-change-transform ${
-        zoom ? "scale-110" : "scale-100"
-      } ${className}`}
-    >
-      {children}
-    </h3>
-  );
-}
+import { Link } from "react-router-dom";
 
 export function Projects({ isSearchable = false }: { isSearchable?: boolean }) {
   const [query, setQuery] = useState("");
 
-  const serious = SERIOUS_ORDER.map(resolveEntry).filter((p) => matchesQuery(p, query));
-  const fun = FUN_ORDER.map(resolveEntry).filter((p) => matchesQuery(p, query));
+  const allProjects = site.projects.filter((p) => matchesQuery(p, query));
 
   return (
     <section id="projects">
@@ -77,28 +24,29 @@ export function Projects({ isSearchable = false }: { isSearchable?: boolean }) {
           />
         )}
 
-        {serious.length > 0 && (
-          <>
-            <SubHeading>Serious Projects</SubHeading>
-            <div className="divide-y divide-[var(--line)]">
-              {serious.map((project) => (
-                <ProjectCard key={project.title} project={project} />
-              ))}
-            </div>
-          </>
+        {allProjects.length > 0 && (
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+            {allProjects.map((project, i) => (
+              <ProjectCard key={project.title} p={project} i={i} />
+            ))}
+          </div>
         )}
 
-        {fun.length > 0 && (
-          <>
-            <SubHeading className="mt-12">Fun Projects</SubHeading>
-            <div className="divide-y divide-[var(--line)]">
-              {fun.map((project) => (
-                <ProjectCard key={project.title} project={project} />
-              ))}
-            </div>
-          </>
-        )}
+        <div className="mt-12 text-center">
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-6 py-3 text-sm font-medium text-neutral-200 hover:bg-neutral-800 hover:text-white transition-all duration-300 hover:scale-[1.03]"
+          >
+            view full project gallery & archive →
+          </Link>
+        </div>
       </Shell>
     </section>
   );
+}
+
+function matchesQuery(p: Project, query: string) {
+  if (!query) return true;
+  const q = query.toLowerCase();
+  return `${p.title} ${p.blurb} ${p.stack.join(" ")}`.toLowerCase().includes(q);
 }
