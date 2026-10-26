@@ -19,7 +19,7 @@ const hoverCardsData: Record<string, {
   github: {
     handle: "@iampranjal-source",
     bio: "Full Stack Developer. Building products, learning technologies, shipping consistently.",
-    stats: ["5+ Projects", "Open Source"],
+    stats: ["52 Contributions", "Open Source"],
     bannerText: "learn • build • ship",
   },
   twitter: {

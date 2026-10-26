@@ -11,6 +11,7 @@ export interface HeatmapData {
   days: (HeatDay | null)[];
   total: number;
   live: boolean;
+  loading: boolean;
 }
 
 function toISODate(d: Date): string {
@@ -52,7 +53,7 @@ function buildEmptyHeatmap(): HeatmapData {
   // Pad the trailing partial week.
   while (days.length % 7 !== 0) days.push(null);
 
-  return { days, total: 0, live: false };
+  return { days, total: 0, live: false, loading: true };
 }
 
 /** Live GitHub contributions for the last year (public API, no auth). */
@@ -78,10 +79,12 @@ export function useGithubHeatmap(user: string): HeatmapData {
         while (days.length % 7 !== 0) days.push(null);
         const total =
           d?.total?.lastYear ?? contribs.reduce((a: number, c: any) => a + (c.count || 0), 0);
-        setHeatmap({ days, total, live: true });
+        setHeatmap({ days, total, live: true, loading: false });
       })
       .catch(() => {
-        if (!cancelled) setHeatmap(buildEmptyHeatmap());
+        if (!cancelled) {
+          setHeatmap((prev) => ({ ...prev, live: false, loading: false }));
+        }
       });
     return () => {
       cancelled = true;

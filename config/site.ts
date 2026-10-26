@@ -62,7 +62,7 @@ export const site = {
   socials: {
     github: "https://github.com/iampranjal-source",
     twitter: "https://x.com/iampranjal304",
-    linkedin: "https://www.linkedin.com/in/pranjal-chauhan-57436a2b2/",
+    linkedin: "https://www.linkedin.com/in/pranjal-chauhan-57436a2b2/?isSelfProfile=true",
   },
   experience: [
     {
@@ -88,8 +88,8 @@ export const site = {
   ],
   writing: [] as Post[],
   github: {
-    username: "iamjahnvi",
-    contributionsLastYear: "500+",
+    username: "iampranjal-source",
+    contributionsLastYear: "52",
   },
   footerNote: "Built with ❤️ and hardwork "
 } as const;

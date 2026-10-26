@@ -24,8 +24,8 @@ export type Job = {
 };
 
 export const site = {
-  name: "Janhvi",
-  firstName: "Janhvi",
+  name: "Pranjal Chauhan",
+  firstName: "Pranjal",
   url: "https://jahnvidotdev.vercel.app",
   quote: {
     text: "Simplicity is prerequisite for reliability.",
@@ -41,10 +41,10 @@ export const site = {
   location: "Delhi, India",
   timezone: "Asia/Kolkata",
   email: "conveytojahnvi@gmail.com",
-  greeting: "Hey, I'm Jahnvi",
+  greeting: "Hey, I'm Pranjal Chauhan",
   tagline: "I build clean, modern websites and web apps where design, functionality, and even the smallest details matter.",
   about: [
-    "Hey, I'm Jahnvi, a full stack developer who loves building clean, modern websites and apps where design, functionality, and even the smallest details matter, with a focus on making products that are both practical and visually satisfying.",
+    "Hey, I'm Pranjal Chauhan, a full stack developer who loves building clean, modern websites and apps where design, functionality, and even the smallest details matter, with a focus on making products that are both practical and visually satisfying.",
     "I spend most of my time in the terminal, the browser, or scribbling on a whiteboard. I lean backend, not because I don't like frontend, but because I enjoy making polished things actually hold up.",
     "I don't ship junk. Maintainability isn't optional. And I build best when I'm curious.",
   ],
@@ -62,9 +62,9 @@ export const site = {
     nowListening: "focus playlists",
   },
   socials: {
-    github: "https://github.com/iamjahnvi",
-    twitter: "https://x.com/fireflybuilds",
-    linkedin: "https://linkedin.com/in/jahnvi-11a189358/",
+    github: "https://github.com/iampranjal-source",
+    twitter: "https://x.com/iampranjal304",
+    linkedin: "https://www.linkedin.com/in/pranjal-chauhan-57436a2b2/?isSelfProfile=true",
     email: "mailto:conveytojahnvi@gmail.com",
     resume: "https://drive.google.com/file/d/1NQwCDHVQZxRd_hUnQ2vSI3dQX3SNb8Js/view?usp=sharing",
     discord: "https://discord.gg/ra4kyKdTk",
@@ -207,8 +207,8 @@ export const site = {
     "Netlify",
   ],
   github: {
-    username: "iamjahnvi",
-    contributionsLastYear: "500+",
+    username: "iampranjal-source",
+    contributionsLastYear: "52",
   },
   footerNote: "Built with ❤️ and hardwork"
 } as const;

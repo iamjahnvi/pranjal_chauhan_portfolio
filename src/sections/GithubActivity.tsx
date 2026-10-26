@@ -136,9 +136,11 @@ export function GithubActivity() {
             {/* Info and stats at the bottom */}
             <div className="mt-2.5 flex items-center justify-between font-mono text-[11px] text-[var(--muted)]">
               <span>
-                {heatmap.live
+                {heatmap.loading
+                  ? `${site.github.contributionsLastYear || "52"} contributions in the last year`
+                  : heatmap.live
                   ? `${heatmap.total} contributions in the last year`
-                  : "Live GitHub data unavailable right now"}
+                  : `${site.github.contributionsLastYear || "52"} contributions in the last year`}
               </span>
               <span className="flex items-center gap-1.5">
                 Less
