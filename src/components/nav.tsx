@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Shell } from "@/components/Layout";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Search } from "lucide-react";
 
 export function Nav({ onOpenPalette }: { onOpenPalette?: () => void }) {
@@ -43,6 +44,7 @@ export function Nav({ onOpenPalette }: { onOpenPalette?: () => void }) {
             );
           })}
         </nav>
+        <ThemeToggle />
         {onOpenPalette && (
           <button
             type="button"

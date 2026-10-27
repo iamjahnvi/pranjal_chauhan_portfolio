@@ -12,7 +12,7 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
       title={dark ? "Switch to light theme" : "Switch to dark theme"}
-      className="fixed right-3 top-1/2 z-50 grid size-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-[var(--line)] bg-[var(--card)] text-[var(--muted)] shadow-sm transition-colors hover:text-[var(--fg)] sm:right-5"
+      className="grid size-7 shrink-0 cursor-pointer place-items-center text-[var(--muted)] transition-colors hover:text-[var(--fg)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-[var(--muted)]"
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
@@ -23,9 +23,10 @@ export function ThemeToggle() {
           transition={{ duration: 0.2 }}
           className="grid place-items-center"
         >
-          {dark ? <Moon className="size-4" /> : <Sun className="size-4" />}
+          {dark ? <Moon className="size-3.5" /> : <Sun className="size-3.5" />}
         </motion.span>
       </AnimatePresence>
     </button>
   );
 }
+

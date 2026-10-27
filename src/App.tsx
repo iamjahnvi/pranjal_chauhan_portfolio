@@ -11,7 +11,6 @@ import { Experience } from "@/sections/Experience";
 import { TechStack } from "@/sections/TechStack";
 import { GithubActivity } from "@/sections/GithubActivity";
 import { CommandPalette } from "@/components/command-palette";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { Konami } from "@/components/konami";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -73,7 +72,6 @@ export function App() {
               <div className="ambient-blob ambient-blob--b" />
             </div>
             <Nav onOpenPalette={() => setPaletteOpen(true)} />
-            <ThemeToggle />
 
             <main className="relative z-10">
               <Routes>
