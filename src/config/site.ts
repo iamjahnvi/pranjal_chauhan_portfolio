@@ -58,7 +58,7 @@ export const site = {
     available: true,
     availableText: "open to opportunities",
     nowLearning: "Backend Engineering • System Design • DSA • DevOps",
-    nowBuilding: "NextStep",
+    nowBuilding: "Thoda Sukoon",
     nowListening: "focus playlists",
   },
   socials: {
@@ -82,27 +82,23 @@ export const site = {
   ] as Job[],
     projects: [
     {
-      title: "SustainTheGlobe (EcoEcho)",
+      title: "Thoda Sukoon",
       blurb:
-        "A hackathon project that turns small eco-friendly actions into points. Users sign in, log an environmental action with a photo, earn points calculated on the server, and see how they rank on a leaderboard.",
-      story:
-        "A React + TypeScript web client on a serverless AWS backend: Cognito for sign-up and sign-in, API Gateway and Lambda for the API, DynamoDB for data, and S3 presigned URLs for private photo uploads. Points come only from a server-side rule table, duplicate submissions are rejected, and the leaderboard masks user IDs.\n\nThe repo also has a Kotlin / Jetpack Compose Android starter and a Docker + LocalStack setup for local development. Deploying the full stack to AWS is the next step.",
-      stack: ["React", "TypeScript", "Vite", "TailwindCSS", "AWS Lambda", "DynamoDB", "Amazon S3", "Amazon Cognito", "Docker", "Kotlin"],
+        "A small romantic-music player page with a now-playing card, a heart-styled progress bar and play, previous and next controls. It also links out to Spotify and YouTube.",
+      stack: ["HTML", "CSS", "JavaScript", "Netlify"],
       year: "2026",
-      // image: "/project-images/sustaintheglobe.jpeg",
+      image: "/project-images/thoda-sukkon-front-page.webp",
       links: {
-        source: "https://github.com/iampranjal-source/wemakedevshachathon",
+        live: "https://thoda-sukoon.netlify.app/",
       },
     },
     {
       title: "Ashok Namkeen & Sweets",
       blurb:
-        "A single-page website for a snack and sweets shop in Malviya Nagar, New Delhi. It presents the menu categories, the shop's story, customer reviews, opening hours and directions, with online ordering linked to Zomato.",
-      story:
-        "Built as a fast, mobile-friendly landing page with smooth in-page navigation: a hero with calls to action, specialties (Namkeen, Mithai, Hot Snacks), a 4.8-rated reviews section, and a store section with address, hours and a Google Maps link.",
+        "A single-page website for a snack and sweets shop in Malviya Nagar, New Delhi. It shows the menu categories, the shop's story, customer reviews and store hours, with directions on Google Maps and online ordering through Zomato.",
       stack: ["HTML", "CSS", "Netlify"],
       year: "2026",
-      // image: "/project-images/ashok-sweets.jpeg",
+      image: "/project-images/ashoka-sweets-front-page.webp",
       links: {
         live: "https://ashok-sweets-namkeens.netlify.app/",
       },
@@ -110,12 +106,10 @@ export const site = {
     {
       title: "Cafe Nine",
       blurb:
-        "A single-page website for a neighbourhood coffeehouse in Khirki Extension, Malviya Nagar. It sets a slow-coffee mood and covers the café's story, menu highlights with prices, ratings from Zomato, Google, Magicpin and Swiggy, and visit details.",
-      story:
-        "A responsive landing page with a hero, a story section about the aquarium-café atmosphere, a short menu (frappe, hakka noodles, smoked sandwich), review highlights, an open-now status, and links for ordering on Zomato and reserving a table.",
+        "A single-page website for a neighbourhood coffeehouse in Khirki Extension, Malviya Nagar. It covers the café's story, menu highlights with prices, ratings across delivery platforms and visit details, with links to order on Zomato or reserve a table.",
       stack: ["HTML", "CSS", "Netlify"],
       year: "2026",
-      // image: "/project-images/cafe-nine.jpeg",
+      image: "/project-images/cafe-nine-front-page.webp",
       links: {
         live: "https://cofee-cafe-9.netlify.app/",
       },
