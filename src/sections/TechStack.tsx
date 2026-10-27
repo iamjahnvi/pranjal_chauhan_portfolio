@@ -1,23 +1,16 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { motion, AnimatePresence, MotionConfig, type Variants } from "framer-motion";
+import { motion, MotionConfig, type Variants } from "framer-motion";
 import { Shell, SectionHeader } from "@/components/Layout";
 import { site } from "@/config/site";
 import { Icon } from "@iconify/react";
 
-const CATEGORY_ICONS: Record<string, string> = {
-  All: "lucide:layers",
-  Languages: "lucide:code-2",
-  Backend: "lucide:server",
-  Frontend: "lucide:layout",
-  Databases: "lucide:database",
-  "AI & Tools": "lucide:sparkles",
-};
-
+// NOTE: ProjectCard.tsx imports this map, so keep the old entries.
 export const SKILL_ICONS: Record<string, string> = {
   TypeScript: "logos:typescript-icon",
   JavaScript: "logos:javascript",
   Python: "logos:python",
   Java: "logos:java",
+  HTML: "logos:html-5",
   HTML5: "logos:html-5",
   "HTML5 Audio": "logos:html-5",
   CSS3: "logos:css-3",
@@ -40,11 +33,14 @@ export const SKILL_ICONS: Record<string, string> = {
   Git: "logos:git-icon",
   GitHub: "logos:github-icon",
   Netlify: "logos:netlify-icon",
+  // new
+  n8n: "simple-icons:n8n",
+  AWS: "simple-icons:amazonaws",
+  Vercel: "simple-icons:vercel",
+  TinyFish: "lucide:fish",
 };
 
 // Accent colors are revealed on hover only — pills rest monochrome.
-// (lucide glyphs + currentColor simple-icons take the hover color;
-// multicolor brand glyphs just lose their grayscale filter on hover.)
 const SKILL_COLORS: Record<string, string> = {
   Uvicorn: "#14b8a6",
   "REST APIs": "#f59e0b",
@@ -53,22 +49,20 @@ const SKILL_COLORS: Record<string, string> = {
   "Razorpay API": "#3395ff",
   Axios: "#5a29e4",
   GitHub: "var(--fg)",
+  // new
+  n8n: "#ea4b71",
+  AWS: "#ff9900",
+  Vercel: "var(--fg)",
+  TinyFish: "#0ea5e9",
 };
 
-const skillCategories: Record<string, string[]> = {
-  Languages: ["JavaScript", "TypeScript", "Python", "Java", "HTML5", "CSS3"],
-  Frontend: ["React", "Vite", "HTML5", "CSS3"],
-  Backend: ["Node.js", "Express.js", "FastAPI", "REST APIs", "Uvicorn"],
-  Databases: ["MongoDB", "Mongoose", "Supabase"],
-  "AI & Tools": ["Streamlit", "Razorpay API", "Axios", "Git", "GitHub", "Netlify"],
-};
+// Which skills from site.skills go where.
+const LANGUAGES: string[] = ["Python", "HTML", "CSS", "JavaScript"];
+const TOOLS: string[] = ["n8n", "Git", "GitHub", "AWS", "Netlify", "Vercel", "TinyFish"];
 
-// Keyed-grid stagger: the whole grid remounts per tab so pills fade/slide
-// in together with a soft stagger instead of flying across the layout.
 const gridVariants: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.03, delayChildren: 0.02 } },
-  exit: { opacity: 0, transition: { duration: 0.15, ease: "easeIn" } },
 };
 
 const pillVariants: Variants = {
@@ -110,8 +104,7 @@ function playClickSound() {
   }
 }
 
-export function TechStack() {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+function SkillPills({ skills }: { skills: string[] }) {
   const [popped, setPopped] = useState<string | null>(null);
   const popTimer = useRef(0);
 
@@ -124,96 +117,79 @@ export function TechStack() {
     popTimer.current = window.setTimeout(() => setPopped(null), 380);
   }
 
+  return (
+    <MotionConfig reducedMotion="user">
+      <motion.div
+        variants={gridVariants}
+        initial="hidden"
+        animate="show"
+        className="flex flex-wrap gap-2.5"
+      >
+        {skills.map((skill) => {
+          const iconName = SKILL_ICONS[skill] || "lucide:code-2";
+          const color = SKILL_COLORS[skill];
+          return (
+            <motion.button
+              key={skill}
+              type="button"
+              onClick={() => handlePillClick(skill)}
+              variants={pillVariants}
+              whileTap={{ scale: 0.96 }}
+              aria-label={skill}
+              className="group flex cursor-pointer items-center gap-2 rounded-md border border-[var(--line)] bg-[var(--card)] px-3 py-1.5 font-mono text-[12px] text-[var(--muted)] shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--muted)]"
+            >
+              <motion.span
+                animate={popped === skill ? { scale: [1, 1.45, 1] } : { scale: 1 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="grid shrink-0 place-items-center"
+              >
+                <Icon
+                  icon={iconName}
+                  width={16}
+                  height={16}
+                  style={color ? ({ "--skill": color } as CSSProperties) : undefined}
+                  className={`size-4 shrink-0 grayscale transition-[filter,color] duration-200 group-hover:grayscale-0 ${
+                    color ? "group-hover:text-[var(--skill)]" : ""
+                  }`}
+                />
+              </motion.span>
+              {skill}
+            </motion.button>
+          );
+        })}
+      </motion.div>
+    </MotionConfig>
+  );
+}
+
+export function TechStack() {
   if (!site.skills.length) return null;
 
-  const categories = ["All", "Languages", "Frontend", "Backend", "Databases", "AI & Tools"];
-
-  const filteredSkills = activeCategory === "All"
-    ? site.skills
-    : site.skills.filter((skill) => skillCategories[activeCategory]?.includes(skill));
+  const languages = site.skills.filter((s) => LANGUAGES.includes(s));
+  const tools = site.skills.filter((s) => TOOLS.includes(s));
 
   return (
-    <div id="skills">
-      <SectionHeader
-        title="Tech Stack"
-        anchorId="skills"
-        aside={
-          <span className="hidden font-mono text-[10px] tracking-wider text-[var(--soft)] sm:inline">
-            ( select tab to filter )
-          </span>
-        }
-      />
-      <Shell className="px-6 py-6 sm:px-8">
-        {/* Category Tabs */}
-        <div className="flex flex-wrap gap-1.5 rounded-lg border border-[var(--line)] bg-[var(--chip)] p-1">
-          {categories.map((cat) => {
-            const iconName = CATEGORY_ICONS[cat] || "lucide:layers";
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setActiveCategory(cat)}
-                className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[12px] font-medium transition-all duration-200 cursor-pointer ${
-                  activeCategory === cat
-                    ? "bg-[var(--fg)] text-[var(--bg)] shadow-sm font-semibold"
-                    : "text-[var(--muted)] hover:bg-[var(--hover)] hover:text-[var(--fg)]"
-                }`}
-              >
-                <Icon icon={iconName} width={14} height={14} className="size-3.5" />
-                {cat}
-              </button>
-            );
-          })}
-        </div>
+    <>
+      {/* ───────── Tech Stack → Languages ───────── */}
+      <div id="skills">
+        <SectionHeader title="Tech Stack" anchorId="skills" />
+        <Shell className="px-6 py-6 sm:px-8">
+          <div className="mb-4 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-[var(--soft)]">
+            <Icon icon="lucide:code-2" width={14} height={14} className="size-3.5" />
+            Languages
+          </div>
+          <SkillPills skills={languages} />
+        </Shell>
+      </div>
 
-        {/* Skill Items Grid */}
-        <MotionConfig reducedMotion="user">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              variants={gridVariants}
-              initial="hidden"
-              animate="show"
-              exit="exit"
-              className="mt-6 flex flex-wrap gap-2.5"
-            >
-              {filteredSkills.map((skill) => {
-                const iconName = SKILL_ICONS[skill] || "lucide:code-2";
-                const color = SKILL_COLORS[skill];
-                return (
-                  <motion.button
-                    key={skill}
-                    type="button"
-                    onClick={() => handlePillClick(skill)}
-                    variants={pillVariants}
-                    whileTap={{ scale: 0.96 }}
-                    aria-label={skill}
-                    className="group flex cursor-pointer items-center gap-2 rounded-md border border-[var(--line)] bg-[var(--card)] px-3 py-1.5 font-mono text-[12px] text-[var(--muted)] shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--muted)]"
-                  >
-                    <motion.span
-                      animate={popped === skill ? { scale: [1, 1.45, 1] } : { scale: 1 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="grid shrink-0 place-items-center"
-                    >
-                      <Icon
-                        icon={iconName}
-                        width={16}
-                        height={16}
-                        style={color ? ({ "--skill": color } as CSSProperties) : undefined}
-                        className={`size-4 shrink-0 grayscale transition-[filter,color] duration-200 group-hover:grayscale-0 ${
-                          color ? "group-hover:text-[var(--skill)]" : ""
-                        }`}
-                      />
-                    </motion.span>
-                    {skill}
-                  </motion.button>
-                );
-              })}
-            </motion.div>
-          </AnimatePresence>
-        </MotionConfig>
-      </Shell>
-    </div>
+      {/* ───────── Tools & Workflows ───────── */}
+      <div id="tools">
+        <SectionHeader title="Tools & Workflows" anchorId="tools" />
+        <Shell className="px-6 py-6 sm:px-8">
+          <SkillPills skills={tools} />
+        </Shell>
+      </div>
+    </>
   );
 }
 

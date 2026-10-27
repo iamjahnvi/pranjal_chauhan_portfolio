@@ -1,11 +1,9 @@
-"use client";
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { site, type Project } from "@/config/site";
+import { site, type Project } from "../src/config/site";
 import { Reveal, SectionHeader } from "./reveal";
-import Link from "next/link";
 import { ArrowUpRight, GitHubIcon } from "./icons";
+import { Link } from "react-router-dom";
 
 const getTechIcon = (tech: string) => {
   const map: Record<string, string> = {
@@ -242,7 +240,7 @@ export function Projects() {
 
       <div className="mt-12 text-center">
         <Link
-          href="/projects"
+          to="/projects"
           className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-5 py-2.5 text-sm font-medium hover:bg-surface hover:text-accent transition-all duration-300 hover:scale-[1.03]"
         >
           view full project archive →
