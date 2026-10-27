@@ -11,7 +11,7 @@ import { Experience } from "@/sections/Experience";
 import { TechStack } from "@/sections/TechStack";
 import { GithubActivity } from "@/sections/GithubActivity";
 import { CommandPalette } from "@/components/command-palette";
-import { PullCord } from "@/components/PullCord";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Konami } from "@/components/konami";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -73,7 +73,7 @@ export function App() {
               <div className="ambient-blob ambient-blob--b" />
             </div>
             <Nav onOpenPalette={() => setPaletteOpen(true)} />
-            <PullCord />
+            <ThemeToggle />
 
             <main className="relative z-10">
               <Routes>

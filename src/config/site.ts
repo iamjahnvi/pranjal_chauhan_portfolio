@@ -80,106 +80,45 @@ export const site = {
       url: "",
     },
   ] as Job[],
-  projects: [
+    projects: [
     {
-      title: "NextStep",
+      title: "SustainTheGlobe (EcoEcho)",
       blurb:
-        "A personalized exam discovery platform that helps students find opportunities they’re actually eligible for. It matches academic profiles with eligibility criteria, deadlines, and official exam information in one place.",
+        "A hackathon project that turns small eco-friendly actions into points. Users sign in, log an environmental action with a photo, earn points calculated on the server, and see how they rank on a leaderboard.",
       story:
-        "Students create an academic profile and get filtered exam recommendations with eligibility details. Built as a full-stack app: React + Vite frontend talking to an Express.js REST backend (auth, profiles, recommendation logic) backed by MongoDB/Mongoose, wired with Axios.\n\nFlow: profile → eligibility matching → personalized recommendations → exam details. Ongoing work: deadlines, saved exams, notifications.",
-      stack: ["React", "Vite", "JavaScript", "Node.js", "Express.js", "MongoDB", "Mongoose", "Axios"],
-      year: "2025",
-      image: "/project-images/nextstep.jpeg",
-      links: {
-        source: "https://github.com/iamjahnvi/nextStep",
-      },
-      featured: true,
-    },
-    {
-      title: "ECDAT",
-      blurb:
-        "An enterprise cryptographic discovery and analysis tool designed to help organizations assess their readiness for the post-quantum era. It scans software ecosystems for cryptographic dependencies and surfaces risks to support structured PQC migration.",
-      stack: ["React", "Vite", "TailwindCSS", "Python", "FastAPI", "Uvicorn"],
-      year: "",
-      image: "/project-images/ecdat.jpeg",
-      links: {
-        source: "https://github.com/iamjahnvi/ECDAT_NTRO",
-      },
-      featured: true,
-    },
-    {
-      title: "AI Revenue Recovery Agent",
-      blurb:
-        "An AI-assisted payment recovery system that analyzes failed transactions and determines whether to retry, delay, or escalate them. It combines payment failure signals with retry policies to make recovery decisions while avoiding unnecessary repeated attempts.",
-      story:
-        "Pipeline: detection → payment normalizer → risk engine (amount × recovery probability) → policy engine → bounded executor (retry / remind / escalate / stop) → audit + metrics. FastAPI webhook server verifies Razorpay payment.failed events with HMAC-SHA256 and idempotent processing; a batch processor computes revenue-at-risk, recovered revenue and recovery rate; a Streamlit dashboard shows outcomes.\n\nSandbox demo: ₹64,160 at risk across 7 events. Test mode only — no real charges.",
-      stack: ["Python", "FastAPI", "Streamlit", "Razorpay API", "Groq", "Uvicorn"],
+        "A React + TypeScript web client on a serverless AWS backend: Cognito for sign-up and sign-in, API Gateway and Lambda for the API, DynamoDB for data, and S3 presigned URLs for private photo uploads. Points come only from a server-side rule table, duplicate submissions are rejected, and the leaderboard masks user IDs.\n\nThe repo also has a Kotlin / Jetpack Compose Android starter and a Docker + LocalStack setup for local development. Deploying the full stack to AWS is the next step.",
+      stack: ["React", "TypeScript", "Vite", "TailwindCSS", "AWS Lambda", "DynamoDB", "Amazon S3", "Amazon Cognito", "Docker", "Kotlin"],
       year: "2026",
-      image: "/project-images/ai-recovery.jpeg",
-      imageFit: "contain",
-      imageBg: "#0E1118",
+      // image: "/project-images/sustaintheglobe.jpeg",
       links: {
-        source: "https://github.com/iamjahnvi/ai-recovery-razorpay",
+        source: "https://github.com/iampranjal-source/wemakedevshachathon",
       },
-      featured: true,
     },
     {
-      title: "Virtual Carvaan",
+      title: "Ashok Namkeen & Sweets",
       blurb:
-        "A digital take on the nostalgic Carvaan experience, bringing a curated collection of music and an old-school listening feel to the web. Built as a playful exploration of interaction, nostalgia, and web experience design.",
+        "A single-page website for a snack and sweets shop in Malviya Nagar, New Delhi. It presents the menu categories, the shop's story, customer reviews, opening hours and directions, with online ordering linked to Zomato.",
       story:
-        "Built with React + Vite and styled responsively, it keeps the classic Carvaan listening experience: pick a track, listen, move on. Supabase Edge Functions supply external music data while HTML5 Audio handles playback in the browser.",
-      stack: ["React", "TypeScript", "Vite", "Supabase", "HTML5 Audio", "CSS"],
+        "Built as a fast, mobile-friendly landing page with smooth in-page navigation: a hero with calls to action, specialties (Namkeen, Mithai, Hot Snacks), a 4.8-rated reviews section, and a store section with address, hours and a Google Maps link.",
+      stack: ["HTML", "CSS", "Netlify"],
       year: "2026",
-      image: "/project-images/virtual-carvaan.jpeg",
-      imageFit: "cover",
-      imagePosition: "center",
+      // image: "/project-images/ashok-sweets.jpeg",
       links: {
-        live: "https://virtualcarvaan.netlify.app/",
-        source: "https://github.com/iamjahnvi/virtual-carvaan",
+        live: "https://ashok-sweets-namkeens.netlify.app/",
       },
-      featured: true,
     },
     {
-      title: "Tiny Universe",
+      title: "Cafe Nine",
       blurb:
-        "An experimental, immersive web experience built around cosmic visuals, motion, and exploration. It turns a simple scroll into a playful journey through an evolving digital universe.",
+        "A single-page website for a neighbourhood coffeehouse in Khirki Extension, Malviya Nagar. It sets a slow-coffee mood and covers the café's story, menu highlights with prices, ratings from Zomato, Google, Magicpin and Swiggy, and visit details.",
       story:
-        "A frontend playground built with React + JavaScript + Vite: interactive cosmic elements, moon interactions and bite-sized space facts, composed as a light, explorable single-page experience.",
-      stack: ["React", "JavaScript", "Vite", "CSS"],
-      year: "2025",
-      image: "/project-images/tiny-universe.jpeg",
+        "A responsive landing page with a hero, a story section about the aquarium-café atmosphere, a short menu (frappe, hakka noodles, smoked sandwich), review highlights, an open-now status, and links for ordering on Zomato and reserving a table.",
+      stack: ["HTML", "CSS", "Netlify"],
+      year: "2026",
+      // image: "/project-images/cafe-nine.jpeg",
       links: {
-        live: "https://tinyuniversee.netlify.app/",
-        source: "https://github.com/iamjahnvi/tiny-universe",
+        live: "https://cofee-cafe-9.netlify.app/",
       },
-      featured: false,
-    },
-    {
-      title: "Canva Clone",
-      blurb:
-        "A multi-section Canva landing-page recreation in pure HTML and CSS — navigation, hero, promo and media sections rebuilt with structured markup and custom styling.",
-      story:
-        "Frontend practice project: recreating Canva's visual structure with semantic HTML and custom CSS — multi-section layout, image/video media handling and responsive design. Educational recreation, not affiliated with Canva.\n\nNext steps: JS interactions, animations and functional navigation.",
-      stack: ["HTML5", "CSS3"],
-      year: "2025",
-      links: {
-        source: "https://github.com/iamjahnvi/canva_clone",
-      },
-      featured: false,
-    },
-    {
-      title: "Shopify Clone",
-      blurb:
-        "A multi-page Shopify storefront recreation in pure HTML and CSS — homepage, product and collection layouts plus checkout, B2B and enterprise pages with a consistent design system.",
-      story:
-        "Translates a real e-commerce design into structured, maintainable frontend code: semantic HTML, reusable CSS patterns, navigation/product sections and responsive pages. Frontend only — no backend, payments or auth.\n\nNext steps: search/filter, cart, and backend integration.",
-      stack: ["HTML5", "CSS3"],
-      year: "2025",
-      links: {
-        source: "https://github.com/iamjahnvi/shopify_clone",
-      },
-      featured: false,
     },
   ] as Project[],
   skills: [
