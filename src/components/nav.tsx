@@ -10,7 +10,6 @@ export function Nav({ onOpenPalette }: { onOpenPalette?: () => void }) {
     { label: "projects", path: "/#projects" },
     { label: "tech stack", path: "/#skills" },
     { label: "contact", path: "/#contact" },
-    { label: "chat", path: "/chat" },
   ];
 
   return (

@@ -486,40 +486,6 @@ body {
   opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
 }
-
-/* ------------------------------------------------------------------ */
-/*  Custom cursor (Stanley-inspired: dot + trailing ring)              */
-/* ------------------------------------------------------------------ */
-#cursor-dot,
-#cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 120;
-  pointer-events: none;
-  opacity: 0;
-}
-
-#cursor-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 9999px;
-  background: var(--fg);
-}
-
-#cursor-ring {
-  width: 26px;
-  height: 26px;
-  border-radius: 9999px;
-  border: 1px solid var(--fg);
-  transition: width 180ms ease, height 180ms ease, opacity 250ms ease;
-}
-
-html.cursor-on,
-html.cursor-on * {
-  cursor: none !important;
-}
-
 /* ------------------------------------------------------------------ */
 /*  Avatar CRT reveal (old-TV turn-on, ~950ms, one-shot)               */
 /* ------------------------------------------------------------------ */
@@ -584,10 +550,6 @@ html.cursor-on * {
 @media (prefers-reduced-motion: reduce) {
   .ambient-blob {
     animation: none;
-  }
-  #cursor-dot,
-  #cursor-ring {
-    display: none;
   }
   .avatar-crt.is-loaded img {
     animation: avatar-fade 250ms ease-out forwards;
