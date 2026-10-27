@@ -47,7 +47,6 @@ const getProjectGradient = (index: number) => {
 
 export function ProjectCard({ p, i }: { p: Project; i: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [imgError, setImgError] = useState(false);
 
   return (
     <Reveal delay={i * 0.05}>
@@ -80,28 +79,7 @@ export function ProjectCard({ p, i }: { p: Project; i: number }) {
               )}
             </div>
 
-            {/* Prominent & Fully Visible Project Screenshot */}
-            {p.image && !imgError ? (
-              <div className="relative mt-2 h-44 sm:h-48 w-full overflow-hidden rounded-lg border border-neutral-800/80 shadow-md bg-neutral-900 transition-all duration-300 group-hover:border-neutral-600 group-hover:shadow-xl">
-                <img
-                  src={p.image}
-                  alt={`${p.title} preview`}
-                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                  onError={() => setImgError(true)}
-                />
-              </div>
-            ) : (
-              <div className="relative mt-2 h-44 sm:h-48 w-full overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900/95 shadow-md p-4 flex flex-col justify-between">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-rose-500/80" />
-                  <span className="h-2 w-2 rounded-full bg-amber-500/80" />
-                  <span className="h-2 w-2 rounded-full bg-emerald-500/80" />
-                  <span className="font-mono text-[9px] text-neutral-400 ml-2">{p.title.toLowerCase()}</span>
-                </div>
-                <div className="font-serif text-xl text-neutral-100">{p.title}</div>
-              </div>
-            )}
+
           </div>
 
           <div className="flex items-baseline justify-between gap-3 flex-wrap">

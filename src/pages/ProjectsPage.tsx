@@ -142,16 +142,6 @@ export function ProjectsPage() {
                 {activeModalProject.blurb}
               </p>
 
-              {activeModalProject.image && (
-                <div className="mt-4 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--chip)] max-h-64">
-                  <img
-                    src={activeModalProject.image}
-                    alt={activeModalProject.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
-
               {activeModalProject.story && (
                 <div className="mt-6 border-t border-[var(--line)] pt-4">
                   <h3 className="font-mono text-xs uppercase text-[var(--soft)] font-semibold mb-2">Architecture & Deep Dive</h3>

@@ -15,47 +15,10 @@ function slugify(title: string) {
  * No side-by-side grid — everything stacks vertically.
  */
 export function ProjectCard({ project: p }: { project: Project; index?: number }) {
-  const [imageMissing, setImageMissing] = useState(false);
   const [activeTech, setActiveTech] = useState<string | null>(null);
-  // Retry the image if its URL changes (e.g. file added after a miss).
-  useEffect(() => setImageMissing(false), [p.image]);
-  const showImage = !!p.image && !imageMissing;
-  const fit = p.imageFit ?? "cover";
-  const frameStyle = fit === "contain" && p.imageBg ? { backgroundColor: p.imageBg } : undefined;
-  // Cover images default to top (website screenshots); centered device shots like Carvaan opt into center.
-  const positionClass = p.imagePosition === "center" ? "object-center" : "object-top";
-  const suggestion = `public/project-images/${slugify(p.title)}.png`;
 
   return (
     <article className="py-10 sm:py-14">
-      {/* 1. PROJECT IMAGE — full width, consistent aspect ratio */}
-      <div className="project-image-frame group relative aspect-[16/9] w-full overflow-hidden rounded-[5px]">
-        <div className="project-image-window relative h-full w-full overflow-hidden rounded-[2px] bg-[var(--bg)]" style={frameStyle}>
-          {showImage ? (
-            <img
-              src={p.image}
-              alt={`${p.title} project preview`}
-              loading="lazy"
-              onError={() => setImageMissing(true)}
-              className={`h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.02] ${
-              fit === "contain" ? "object-contain" : `object-cover ${positionClass}`
-            }`}
-            />
-          ) : (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-6 text-center">
-              <span className="font-serif text-3xl text-[var(--soft)] sm:text-4xl">
-                {p.title.charAt(0)}
-              </span>
-              <p className="font-mono text-[11px] leading-5 text-[var(--soft)]">
-                Preview coming soon
-                <br />
-                <span className="text-[var(--muted)]">Add {suggestion}</span>
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-
       {/* 2. PROJECT NAME */}
       <div className="mt-6 flex flex-wrap items-baseline justify-between gap-3">
         <h4 className="font-serif text-2xl text-[var(--fg)] sm:text-3xl">{p.title}</h4>
